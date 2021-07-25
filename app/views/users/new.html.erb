@@ -1,0 +1,71 @@
+<div class="text-center">
+  <h2>ユーザー登録</h2>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @user) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+
+      <div class="m-3">
+        <%= f.text_field :name, placeholder: 'ユーザ名', class: 'form-control' %>
+      </div>
+      <div class="m-3">
+        <%= f.email_field :email, placeholder: 'メールアドレス', class: 'form-control' %>
+      </div>
+      <div class="row m-3 py-2 border rounded">
+        <div class="col-sm-4">
+          <label for="gender" class="form-label">性別</label>
+        </div>
+        <div class="col-sm-16", style="text-align: center">
+          <%= f.radio_button :gender, :male %>
+          <%= f.label :gender, "男性", {value: :male, style: "display: inline-block;"} %>
+          <%= f.radio_button :gender, :female %>
+          <%= f.label :gender, "女性", {value: :female, style: "display: inline-block;"} %>
+        </div>
+      </div>
+      <div class="row m-3 py-2 border rounded">
+        <div class="col-sm-4">
+          <label for="birth" class="form-label">生年月日</label>
+        </div>
+        <div class="sm-16">
+          <%= f.date_field :birth, class: 'form-control' %>
+        </div>
+      </div>
+      <%= f.fields_for :children do |c| %>
+        <div class="row m-3 py-2 border rounded">
+          <div class="col-sm-6">
+            <label for="child_gender" class="form-label">お子様性別</label>
+          </div>
+          <div class="col-sm-16", style="text-align: center">
+            <%= c.radio_button :child_gender, :male %>
+            <%= c.label :child_gender, "男性", {value: :male, style: "display: inline-block;"} %>
+            <%= c.radio_button :child_gender, :female %>
+            <%= c.label :child_gender, "女性", {value: :female, style: "display: inline-block;"} %>
+          </div>
+        </div>
+        <div class="row m-3 p-2 border rounded">
+          <div class="col-sm-8">
+            <label for="child_birth" class="form-label">お子様の生年月日</label>      
+          </div>
+          <div class="sm-16">
+            <%= c.date_field :child_birth, class: 'form-control' %>
+          </div>
+        </div>
+      <% end%>
+      
+      <div class="m-3">
+        <%= f.password_field :password, placeholder: 'パスワード', class: 'form-control' %>
+      </div>
+      
+      <div class="m-3">
+        <%= f.password_field :password_confirmation, placeholder: 'パスワード再入力', class: 'form-control' %>
+      </div>
+      
+      <div class="m-3">
+        <%= f.submit 'ユーザー登録', class: 'btn btn-secondary w-100' %>
+      </div>
+    <% end %>
+  </div>
+</div>
