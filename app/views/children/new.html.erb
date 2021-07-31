@@ -1,0 +1,35 @@
+<div class="text-center">
+  <h2>お子様情報追加</h2>
+</div>
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <%= form_with(model: @child, url: child_new_url) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="row m-3 py-2 border rounded">
+        <div class="col-sm-6">
+          <label for="child_gender" class="form-label">お子様性別</label>
+        </div>
+        <div class="col-sm-16", style="text-align: center">
+          <%= f.radio_button :child_gender, :male %>
+          <%= f.label :child_gender, "男性", {value: :male, style: "display: inline-block;"} %>
+          <%= f.radio_button :child_gender, :female %>
+          <%= f.label :child_gender, "女性", {value: :female, style: "display: inline-block;"} %>
+        </div>
+      </div>
+      <div class="row m-3 p-2 border rounded">
+        <div class="col-sm-8">
+          <label for="child_birth" class="form-label">お子様の生年月日</label>      
+        </div>
+        <div class="sm-16">
+          <%= f.date_field :child_birth, class: 'form-control' %>
+        </div>
+      </div>
+        
+      <div class="mb-2">
+        <%= f.submit '追加', class: 'btn btn-secondary w-100' %>
+      </div>
+    <% end%>
+  </div>
+</div>
+
+    

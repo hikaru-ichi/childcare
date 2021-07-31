@@ -14,16 +14,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   
-  <body data-turbolinks="false">
-    <%= render 'layouts/navbar' %>
-
-    <div class="container">
-      <%= render 'layouts/flash_messages' %>
+  <div class="wrapper">
+    <style>
+      .wrapper{
+        min-height: 100vh;
+        position: relative;
+        padding-bottom: 120px;
+        box-sizing: border-box;
+        }
+      footer{
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        position: absolute;
+        bottom: 0;
+        }
+    </style>
+    
+    <body data-turbolinks="false">
+      <%= render 'layouts/navbar' %>
       
-    <%= yield %>
-  </body>
-  
-  <footer class="fixed-bottom text-center" >
-    COPYRIGHT (C) 2021 子育て助け合い広場​. ALL RIG​HTS RESERVED.
-  </footer>
+      <div class="container">
+        <%= render 'layouts/flash_messages' %>
+        <%= yield %>
+      </div>
+    </body>
+    
+    <footer>
+      COPYRIGHT (C) 2021 子育て助け合い広場​. ALL RIG​HTS RESERVED.
+    </footer>
+  </div>
+
 </html>

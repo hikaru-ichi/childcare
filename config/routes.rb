@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :create]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  get 'users/:id/child', to: 'children#new', as: :child_new
+  post 'users/:id/child', to: 'children#create'
+
 end
