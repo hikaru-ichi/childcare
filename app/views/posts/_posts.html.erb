@@ -1,0 +1,16 @@
+<ul class="list-unstyled mt-2">
+  <% posts.each do |post| %>
+    <li class="d-flex border rounded mb-2">
+      <div class="col-md-1 mx-3 mt-2">
+        <img class="rounded-circle p-1 mt-1" src="<%= gravatar_url(post.user, { size: 42 }) %>" alt="">
+        <p class="text-gray-dark m-0 p-0 text-center"><%= post.user.name %></p>
+      </div>
+      <div class="m-2">
+        <p class="my-1"><%= post.category.name %></p>
+        <p class="my-1"><strong><%= link_to post.title, post_url(post) %></strong></p>
+        <%= "#{ post.created_at.month }月#{post.created_at.day}日" %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<%== pagy_bootstrap_nav(@pagy) %>

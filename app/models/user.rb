@@ -14,4 +14,7 @@ class User < ApplicationRecord
   validates :children, presence: true
   validates_associated :children
   
+  has_many :messages
+  has_many :posts
+
 end

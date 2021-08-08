@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @pagy, @children = pagy(@user.children, items: 3)
+  
   end
 
   def new

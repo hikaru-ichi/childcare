@@ -56,3 +56,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pagy'
+
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'dotenv-rails'
+gem 'fog-aws'
+gem 'font-awesome-rails'
