@@ -63,3 +63,7 @@ gem 'mini_magick'
 gem 'dotenv-rails'
 gem 'fog-aws'
 gem 'font-awesome-rails'
+
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
+end
