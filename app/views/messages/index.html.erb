@@ -7,8 +7,9 @@
   <div class="d-flex text-muted pt-3">
     <img class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle" src="<%=gravatar_url(message.sender, { size: 64 }) %>" alt="">
     <p class="pb-3 mb-0 small lh-sm border-bottom">
-      <strong class="d-block text-gray-dark"><%= link_to message.sender.name, message_new_path(message.sender) %></strong>
-      <%= "#{ message.created_at.month }月#{message.created_at.day}日" %>
+      <strong class="d-block text-gray-dark"><%= link_to message.sender.name, message_new_path(chat_user_id: message.sender.id) %></strong>
+      <% message_time = message.created_at + ( 9 * 60 * 60 ) %>
+      <%= "#{ message_time.month }月#{message_time.day}日#{message_time.hour}:#{message_time.sec}" %>
       <%= message.content%>
     </p>
   </div>

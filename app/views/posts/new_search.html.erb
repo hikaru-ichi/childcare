@@ -1,0 +1,23 @@
+<h2 style="display: inline">お悩み検索</h2>
+
+<%= form_with url: posts_search_url, method: :get, local: true, id: "form4" do |f| %>
+  <div class="row my-4">
+    <div class="col-sm-4">
+      <%= f.text_field :keyword, placeholder: "タイトルまたはカテゴリーにて検索", value: @keyword, id: "sbox4", class: 'form-control' %>
+    </div>
+    <div class="col-sm-2 ">
+      <%= button_tag( class: "btn btn-default btn-sm", id: "sbtn4") do %>
+        <i class="fa fa-search fa-2x"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<h4 style="display: inline">カテゴリー一覧</h4>
+<div class="post-list">
+  <ul>
+    <% @categories.each do |category| %>
+      <li><%= category.name %></li>
+    <% end %>
+  </ul>
+</div>

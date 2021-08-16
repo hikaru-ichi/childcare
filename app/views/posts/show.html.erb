@@ -1,2 +1,34 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h2>お悩み</h2>
+<div class="row p-1 m-1 ">
+  <div class="col-sm-1 text-center mt-4">
+    <p class="m-1 text-center">
+      <img class="rounded-circle" src="<%= gravatar_url(@post.user, { size: 60 }) %>" alt=""><br>
+      <strong class="mx-2"><%= @post.user.name %></strong>
+    </p>
+  </div>
+  <div class="col-sm-8 h-auto">
+    <strong style="font-size:18px;"><%= @post.title %></strong>
+    <div class="d-flex-column border rounded p-2" style="background-color: #FFFAF0;" >
+      <% if @post.image? %>>
+        <p><%= simple_format(h(@post.content))%></p>
+        <p><%= image_tag message.image.url %></p>
+      <% else %>
+        <p><%= simple_format(h(@post.content)) %></p>
+      <% end %>
+    </div>
+      <% message_time = @post.created_at + ( 9 * 60 * 60 ) %>
+      <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
+  </div>
+</div>
+
+<h2>回答</h2>
+<%= render 'responses/responses', responses: @responses %>
+
+
+
+  
+
+  
+
+
+

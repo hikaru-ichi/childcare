@@ -9,6 +9,7 @@
       <% if logged_in? %>
         <div class="btn-group">
           <ul class="navbar-nav">
+            <li class="ms-3"><%= link_to 'ユーザー情報', user_path(current_user), class: 'nav-link' %></li>
             <li class="ms-3"><%= link_to 'メッセージ', messages_path(current_user), class: 'nav-link' %></li>
             <li class="ms-3"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %></li>
           </ul>

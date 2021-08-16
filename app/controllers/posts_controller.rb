@@ -9,6 +9,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @responses = @post.responses.includes([:user, :post]).order(created_at: :desc)
+    @response = Response.new
   end
 
   def new
@@ -29,6 +32,16 @@ class PostsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def new_search
+    @categories = Category.all
+  end
+  
+  def search
+    @pagy, @posts = pagy(Post.includes(:category).references(:category).search(params[:keyword]))
+    @keyword = params[:keyword]
+    render "index"
   end
   
   private

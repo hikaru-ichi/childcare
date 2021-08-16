@@ -2,8 +2,11 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :category
   
-  validates :title, presence: true
-  validates :content, presence: true, unless: :image?
+  has_many :responses, dependent: :destroy
+  validates :user, presence: true
+  validates :category, presence: true
+  validates :title, presence: true, length: { maximum: 255 }
+  validates :content, presence: true, unless: :image?, length: { maximum: 500 }
   mount_uploader :image, ImageUploader
   
   def self.sort(selection)
@@ -16,4 +19,10 @@ class Post < ApplicationRecord
       return all.includes(:category).order("categories.name desc")
     end
   end
+  
+
+  def self.search(keyword)
+    where(["title like? OR name like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+
 end

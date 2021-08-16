@@ -5,11 +5,13 @@
   <% @messages.each do |message| %>
     <% if current_user.name != message.sender.name %>
       <div class="row p-1 m-1">
-        <div class="col-md-1 text-center">
-          <img class="rounded-circle me-2 mt-1" src="<%= gravatar_url(message.sender, { size: 64 }) %>" alt="">
-          <p class= "text-gray-dark"><%= message.sender.name %></p>
+        <div class="col-sm-1 text-center">
+          <p class="my-1">
+            <img class="rounded-circle p-1 mt-1" src="<%= gravatar_url(message.sender, { size: 60 }) %>" alt=""><br>
+            <strong><%= message.sender.name %></strong>
+          </p>
         </div>
-        <div class="col-md-8 h-auto">
+        <div class="col-sm-8 h-auto">
           <li class="d-flex-column border rounded p-2" style="background-color: #F5FFFA;" >
             <% if message.image? %>
               <p><%= simple_format(message.content) %></p>
@@ -22,13 +24,13 @@
             <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
         </div>
       </div>
-        
+  
     <% else %>
       <div class="row p-1 m-1">
-        <div class="col-md-1">
+        <div class="col-sm-1 text-center mt-4">
           <%= link_to "削除", message, method: :delete, data: { confirm: "メッセージを削除しますか?" }, class: 'btn btn-danger btn-sm' %>
         </div>
-        <div class="col-md-8 h-auto">
+        <div class="col-sm-8 h-auto">
           <li class="d-flex-column border rounded p-2" style="background-color: #F5FFFA;" >
             <% if message.image? %>
               <p><%= simple_format(message.content) %></p>
@@ -40,24 +42,26 @@
             <% message_time = message.created_at + ( 9 * 60 * 60 ) %>
             <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
         </div>
-        <div class="col-md-1">
-          <img class="rounded-circle me-2 mt-1" src="<%= gravatar_url(message.sender, { size: 64 }) %>" alt="">
-          <p class: "text-gray-dark text-center m-1"><%= message.sender.name %></p>
+        <div class="col-sm-1">
+          <p class="my-1 text-center">
+            <img class="rounded-circle mt-1" src="<%= gravatar_url(message.sender, { size: 60 }) %>" alt=""><br>
+            <strong><%= message.sender.name %></strong>
+          </p>
         </div>
       </div>
     <% end %>  
   <% end %>
   
   <div class="row" style"align-items: flex-end;">
-    <aside class="offset-md-1 col-sm-8" >
-    <%= form_with(model: @message, url: message_new_path) do |f| %>
+    <aside class="offset-sm-1 col-sm-8" >
+    <%= form_with(model: @message, url: message_new_path, method: :post) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
         <div class="mb-3">
           <%= f.hidden_field :sender_id, :value => current_user.id %>
           <%= f.hidden_field :reciever_id, :value => @chat_user.id %>
           <%= f.text_area :content, placeholder: 'メッセージ内容', class: 'form-control', rows: 5 %>
         </div>
-        <div class="col-md-12 d-flex", style="justify-content: space-between;">
+        <div class="col-sm-12 d-flex", style="justify-content: space-between;">
           <%= f.label :image, class:"form-image-label" do %>
             <i class="fas fa-image fa-3x"></i>
             <%= f.file_field :image, style: 'display:none' %>

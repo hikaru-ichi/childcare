@@ -16,6 +16,13 @@ Rails.application.routes.draw do
   post 'users/:id/message', to: 'messages#create'
   delete '/messages/:id(.:format)', to: 'messages#destroy', as: :message
   
+  get 'posts/search', to: 'posts#search'
+  get 'posts/new_search', to: 'posts#new_search'
+  
   resources :posts, only: [:index, :show, :new, :create, :delete]
+  
+  post 'posts/:id', to: 'responses#create', as: :responses_new
+  delete 'posts/:id', to: 'responses#destroy', as: :responses
+  
 
 end

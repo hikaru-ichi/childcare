@@ -1,16 +1,44 @@
 <ul class="list-unstyled mt-2">
-  <% posts.each do |post| %>
-    <li class="d-flex border rounded mb-2">
-      <div class="col-md-1 mx-3 mt-2">
-        <img class="rounded-circle p-1 mt-1" src="<%= gravatar_url(post.user, { size: 42 }) %>" alt="">
-        <p class="text-gray-dark m-0 p-0 text-center"><%= post.user.name %></p>
-      </div>
-      <div class="m-2">
-        <p class="my-1"><%= post.category.name %></p>
-        <p class="my-1"><strong><%= link_to post.title, post_url(post) %></strong></p>
-        <%= "#{ post.created_at.month }月#{post.created_at.day}日" %>
-      </div>
-    </li>
+  <% if logged_in? %>
+    <% posts.each do |post| %>
+      <li class="d-flex border rounded mb-2">
+        <div class="col-sm-1 mt-2 text-center">
+          <% if current_user == post.user %>
+            <p class="m-1">
+              <img class="rounded-circle p-1 mt-1" src="<%= gravatar_url(post.user, { size: 42 }) %>" alt=""><br>
+              <strong class="mx-2"><%= post.user.name %></strong>
+            </p>
+          <% else %>
+            <p class="m-1">
+              <img class="rounded-circle p-1 mt-1" src="<%= gravatar_url(post.user, { size: 42 }) %>" alt=""><br>
+              <strong class="mx-2"><%= link_to post.user.name, message_new_path(id: current_user.id, chat_user_id: post.user.id) %></strong>
+            </p>
+          <% end %>
+        </div>
+        <div class="m-2">
+          <p class="my-1"><%= post.category.name %></p>
+          <p class="my-1"><strong><%= link_to post.title, post_url(post) %></strong></p>
+          <% message_time = post.created_at + ( 9 * 60 * 60 ) %>
+          <%= "#{ message_time.month }月#{message_time.day}日#{message_time.hour}:#{message_time.sec}" %>
+        </div>
+      </li>
+    <% end %>
+  <% else %>
+    <% posts.each do |post| %>
+      <li class="d-flex border rounded mb-2">
+        <div class="col-sm-1 mx-3 mt-2">
+          <p class="my-1">
+            <img class="rounded-circle p-1 mt-1" src="<%= gravatar_url(post.user, { size: 42 }) %>" alt="">
+            <strong><%= post.user.name %></strong>
+          </p>
+        </div>
+        <div class="m-2">
+          <p class="my-1"><%= post.category.name %></p>
+          <p class="my-1"><strong><%= link_to post.title, post_url(post) %></strong></p>
+          <%= "#{ post.created_at.month }月#{post.created_at.day}日" %>
+        </div>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 <%== pagy_bootstrap_nav(@pagy) %>

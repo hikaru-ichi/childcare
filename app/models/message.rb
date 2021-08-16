@@ -4,6 +4,6 @@ class Message < ApplicationRecord
   
   validates :sender, presence: true
   validates :reciever, presence: true
-  validates :content, presence: true, unless: :image?
+  validates :content, presence: true, unless: :image?, length: { maximum: 500 }
   mount_uploader :image, ImageUploader
 end

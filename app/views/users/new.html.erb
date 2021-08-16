@@ -19,10 +19,10 @@
           <label for="gender" class="form-label">性別</label>
         </div>
         <div class="col-sm-16", style="text-align: center">
-          <%= f.radio_button :gender, :male %>
-          <%= f.label :gender, "男性", {value: :male, style: "display: inline-block;"} %>
-          <%= f.radio_button :gender, :female %>
-          <%= f.label :gender, "女性", {value: :female, style: "display: inline-block;"} %>
+          <%= f.radio_button :gender, :男性 %>
+          <%= f.label :gender, "男性", {value: :男性, style: "display: inline-block;"} %>
+          <%= f.radio_button :gender, :女性 %>
+          <%= f.label :gender, "女性", {value: :女性, style: "display: inline-block;"} %>
         </div>
       </div>
       <div class="row m-3 py-2 border rounded">
@@ -39,10 +39,10 @@
             <label for="child_gender" class="form-label">お子様性別</label>
           </div>
           <div class="col-sm-16", style="text-align: center">
-            <%= c.radio_button :child_gender, :male %>
-            <%= c.label :child_gender, "男性", {value: :male, style: "display: inline-block;"} %>
-            <%= c.radio_button :child_gender, :female %>
-            <%= c.label :child_gender, "女性", {value: :female, style: "display: inline-block;"} %>
+            <%= c.radio_button :child_gender, :男性 %>
+            <%= c.label :child_gender, "男性", {value: :男性, style: "display: inline-block;"} %>
+            <%= c.radio_button :child_gender, :女性 %>
+            <%= c.label :child_gender, "女性", {value: :女性, style: "display: inline-block;"} %>
           </div>
         </div>
         <div class="row m-3 p-2 border rounded">

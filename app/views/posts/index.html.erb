@@ -1,20 +1,20 @@
 <h2 style="display: inline">お悩み一覧</h2>
-  <div class="btn-group offset-sm-8">
-    <%= link_to new_post_url do %>
-      <i class="m-3 btn btn-secondary w-200" role="button">お悩み検索</i>
-    <% end %>
-    <%= link_to new_post_url do %>
-      <i class="m-3 btn btn-secondary w-200" role="button">お悩み投稿</i>
-    <% end %>
-  </div>
-
+<div class="btn-group offset-sm-8">
+  <%= link_to posts_new_search_url do %>
+    <i class="m-3 btn btn-secondary w-200" role="button">お悩み検索</i>
+  <% end %>
+  <%= link_to new_post_url do %>
+    <i class="m-3 btn btn-secondary w-200" role="button">お悩み投稿</i>
+  <% end %>
+</div>
 <div class="mb-3">
   <%= form_with model: @post, url: posts_path, method: :get, local: true do |f| %>
     <%= f.select :keyword, {'投稿が新しい順': 'new', '投稿が古い順': 'old', 'カテゴリ順': 'category'}, {selected: params[:keyword]} %>
     <%= f.submit '並べ替え'%>
   <% end %>
 </div>
-
-<div class="col-sm-6 border rounded p-2">
-  <%= render 'posts/posts', posts: @posts %>
+<div class=row>
+  <div class="col-sm-10 border rounded p-2">
+    <%= render 'posts/posts', posts: @posts %>
+  </div>
 </div>
