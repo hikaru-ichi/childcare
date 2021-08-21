@@ -1,46 +1,35 @@
-<h2 class=pb-3><%= "#{@chat_user.name}さんとのメッセージ" %></h2>
-
-
-<ul class="list-unstyled mt-2">
+<h2><%= "#{@chat_user.name}さんとのメッセージ" %></h2>
   <% @messages.each do |message| %>
     <% if current_user.name != message.sender.name %>
-      <div class="row p-1 m-1">
+      <div class="row mt-1">
         <div class="col-sm-1 text-center">
           <p class="my-1">
             <img class="rounded-circle p-1 mt-1" src="<%= gravatar_url(message.sender, { size: 60 }) %>" alt=""><br>
             <strong><%= message.sender.name %></strong>
           </p>
         </div>
-        <div class="col-sm-8 h-auto">
-          <li class="d-flex-column border rounded p-2" style="background-color: #F5FFFA;" >
-            <% if message.image? %>
-              <p><%= simple_format(message.content) %></p>
-              <p><%= image_tag message.image.url %></p>
-            <% else %>
-              <p><%= simple_format(message.content) %></p>
-            <% end %>
-          </li>
-            <% message_time = message.created_at + ( 9 * 60 * 60 ) %>
-            <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
+        <div class="col-sm-8 h-auto border rounded p-3" style="background-color: #F5FFFA;">
+          <%= simple_format(message.content) %>
+          <% if message.image? %>
+            <%= image_tag message.image.url, :alt => 'image' %>
+          <% end %>
+        </div>
+        <div class="offset-sm-1 px-1 py-0">
+          <% message_time = message.created_at + ( 9 * 60 * 60 ) %>
+          <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
         </div>
       </div>
   
     <% else %>
-      <div class="row p-1 m-1">
+      <div class="row p-1 mt-1">
         <div class="col-sm-1 text-center mt-4">
           <%= link_to "削除", message, method: :delete, data: { confirm: "メッセージを削除しますか?" }, class: 'btn btn-danger btn-sm' %>
         </div>
-        <div class="col-sm-8 h-auto">
-          <li class="d-flex-column border rounded p-2" style="background-color: #F5FFFA;" >
-            <% if message.image? %>
-              <p><%= simple_format(message.content) %></p>
-              <p><%= image_tag message.image.url %></p>
-            <% else %>
-              <p><%= simple_format(message.content) %></p>
-            <% end %>
-          </li>
-            <% message_time = message.created_at + ( 9 * 60 * 60 ) %>
-            <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
+        <div class="col-sm-8 h-auto border rounded p-3" style="background-color: #F5FFFA;">
+          <%= simple_format(message.content) %>
+          <% if message.image? %>
+            <%= image_tag message.image.url, :alt => 'image' %>
+          <% end %>
         </div>
         <div class="col-sm-1">
           <p class="my-1 text-center">
@@ -49,25 +38,37 @@
           </p>
         </div>
       </div>
+      <div class="offset-sm-1 px-0 py-0">
+        <% message_time = message.created_at + ( 9 * 60 * 60 ) %>
+        <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
+      </div>
     <% end %>  
   <% end %>
   
-  <div class="row" style"align-items: flex-end;">
+  <div class="row" style="align-items: flex-end;">
     <aside class="offset-sm-1 col-sm-8" >
     <%= form_with(model: @message, url: message_new_path, method: :post) do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
-        <div class="mb-3">
-          <%= f.hidden_field :sender_id, :value => current_user.id %>
-          <%= f.hidden_field :reciever_id, :value => @chat_user.id %>
-          <%= f.text_area :content, placeholder: 'メッセージ内容', class: 'form-control', rows: 5 %>
+      <% if flash[:error].present? %>
+        <div id="error_explanation" class="alert alert-warning">
+          <ul class="mb-0">
+            <% flash[:error].each do |e| %>
+              <li><%= e %></li>
+            <% end %>
+          </ul>
         </div>
-        <div class="col-sm-12 d-flex", style="justify-content: space-between;">
-          <%= f.file_field :image %>
-          <%= button_tag( class: "btn btn-default btn-sm") do %>
-            <i class="far fa-paper-plane fa-3x"></i>
-          <% end %>
-        </div> 
+      <% end %>
+      <div class="mb-3">
+        <%= f.hidden_field :sender_id, :value => current_user.id %>
+        <%= f.hidden_field :reciever_id, :value => @chat_user.id %>
+        <%= f.text_area :content, placeholder: 'メッセージ内容', class: 'form-control', rows: 5 %>
+      </div>
+      <div class="col-sm-12 d-flex" style="justify-content: space-between;">
+        <%= f.file_field :image %>
+        <%= button_tag( class: "btn btn-default btn-sm") do %>
+          <i class="far fa-paper-plane fa-3x"></i>
+        <% end %>
+      </div> 
     <% end %>
     </aside>
   </div>
-</ul>
+

@@ -33,19 +33,27 @@
     <% end %>
     <div class="row" style"align-items: flex-end;">
     <aside class="offset-sm-1 col-sm-8" >
-      <%= form_with(model: @response, url: responses_new_path) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-          <div class="mb-3">
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.hidden_field :post_id, :value => @post.id %>
-            <%= f.text_area :content, placeholder: '回答内容', class: 'form-control', rows: 5 %>
-          </div>
-          <div class="col-sm-12 d-flex", style="justify-content: flex-end;">
-            <%= f.file_field :image %>
-            <%= button_tag( class: "btn btn-default btn-sm") do %>
-              <i class="far fa-paper-plane fa-3x"></i>
+      <% if flash[:error].present? %>
+        <div id="error_explanation" class="alert alert-warning">
+          <ul class="mb-0">
+            <% flash[:error].each do |e| %>
+              <li><%= e %></li>
             <% end %>
-          </div> 
+          </ul>
+        </div>
+      <% end %>
+      <%= form_with(model: @response, url: responses_new_path) do |f| %>
+        <div class="mb-3">
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :post_id, :value => @post.id %>
+          <%= f.text_area :content, placeholder: '回答内容', class: 'form-control', rows: 5 %>
+        </div>
+        <div class="col-sm-12 d-flex", style="justify-content: flex-end;">
+          <%= f.file_field :image %>
+          <%= button_tag( class: "btn btn-default btn-sm") do %>
+            <i class="far fa-paper-plane fa-3x"></i>
+          <% end %>
+        </div> 
       <% end %>
     </aside>
     </div>

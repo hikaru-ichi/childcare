@@ -27,7 +27,7 @@ class PostsController < ApplicationController
       redirect_to :root
     else
       flash[:danger] = 'お悩み投稿に失敗しました。'
-      redirect_to :new_post
+      redirect_to :new_post, flash: { error: @post.errors.full_messages }
     end
   end
 

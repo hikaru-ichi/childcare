@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
       redirect_to message_new_path(chat_user_id: @message.reciever_id)
     else
       flash[:danger] = 'メッセージの送信に失敗しました。'
-      redirect_to message_new_path(chat_user_id: @message.reciever_id)
+      redirect_to message_new_path(chat_user_id: @message.reciever_id), flash: { error: @message.errors.full_messages }
     end
   end
   

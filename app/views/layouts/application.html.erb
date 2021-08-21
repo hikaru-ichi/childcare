@@ -15,19 +15,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   
-  <div class="wrapper">
-    <body data-turbolinks="false">
+  <body data-turbolinks="false">
+    <div class="wrapper">
       <%= render 'layouts/navbar' %>
-      
+    
       <div class="container">
         <%= render 'layouts/flash_messages' %>
         <%= yield %>
       </div>
-    </body>
     
-    <footer>
-      COPYRIGHT (C) 2021 子育て助け合い広場​. ALL RIG​HTS RESERVED.
-    </footer>
-  </div>
+      <footer>
+        COPYRIGHT (C) 2021 子育て助け合い広場​. ALL RIG​HTS RESERVED.
+      </footer>
+    
+    </div>
+  </body>
+    
+
+
 
 </html>

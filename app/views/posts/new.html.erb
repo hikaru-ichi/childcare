@@ -1,7 +1,16 @@
 <h2>お悩み投稿</h2>
+<% if flash[:error].present? %>
+  <div id="error_explanation" class="alert alert-warning">
+    <ul class="mb-0">
+      <% flash[:error].each do |e| %>
+        <li><%= e %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <% if logged_in? %>
   <%= form_with(model: @post, url: posts_path) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
   
     <div class="col-sm-10 my-3">
@@ -13,7 +22,7 @@
     <div class="col-sm-10 my-3">
       <%= f.select :category_id, @categories.map{ |category| [category.name, category.id]}, { include_blank: 'カテゴリー選択'}, { class: 'form-control' , required: true }%>
     </div>
-    <div class="col-sm-10 d-flex", style="justify-content: space-between;">
+    <div class="col-sm-10 d-flex" style="justify-content: space-between;">
       <%= f.file_field :image %>
       
       <%= button_tag( class: "btn btn-default btn-sm") do %>

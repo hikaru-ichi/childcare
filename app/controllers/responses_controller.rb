@@ -10,7 +10,7 @@ class ResponsesController < ApplicationController
       redirect_to :post
     else
       flash[:danger] = '回答の送信に失敗しました。'
-      redirect_to :post
+      redirect_to :post, flash: { error: @response.errors.full_messages }
     end
   end
 
