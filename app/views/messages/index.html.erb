@@ -5,13 +5,13 @@
 
 <% @messages.each do |message| %>
   <div class="d-flex text-muted pt-3">
-    <img class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle" src="<%=gravatar_url(message.sender, { size: 64 }) %>" alt="">
-    <p class="pb-3 mb-0 small lh-sm border-bottom">
-      <strong class="d-block text-gray-dark"><%= link_to message.sender.name, message_new_path(chat_user_id: message.sender.id) %></strong>
+    <img class="me-3 rounded-circle" src="<%=gravatar_url(message.sender, { size: 60 }) %>" alt="">
+    <div class="pb-1 mb-0 small lh-sm border-bottom">
+      <p class="d-block text-gray-dark"><%= link_to message.sender.name, message_new_path(chat_user_id: message.sender.id) %></p>
+      <%= message.content%><br>
       <% message_time = message.created_at + ( 9 * 60 * 60 ) %>
-      <%= "#{ message_time.month }月#{message_time.day}日#{message_time.hour}:#{message_time.sec}" %>
-      <%= message.content%>
-    </p>
+      <%= message_time.strftime("%Y年%m月%d日%H:%M")%>
+    </div>
   </div>
 <% end %>
 

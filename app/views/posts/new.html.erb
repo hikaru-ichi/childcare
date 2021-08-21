@@ -14,10 +14,8 @@
       <%= f.select :category_id, @categories.map{ |category| [category.name, category.id]}, { include_blank: 'カテゴリー選択'}, { class: 'form-control' , required: true }%>
     </div>
     <div class="col-sm-10 d-flex", style="justify-content: space-between;">
-      <%= f.label :image, class:"form-image-label" do %>
-        <i class="fas fa-image fa-3x"></i>
-        <%= f.file_field :image, style: 'display:none' %>
-      <% end %>
+      <%= f.file_field :image %>
+      
       <%= button_tag( class: "btn btn-default btn-sm") do %>
         <i class="far fa-paper-plane fa-3x"></i>
       <% end %>

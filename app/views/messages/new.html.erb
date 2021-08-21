@@ -62,10 +62,7 @@
           <%= f.text_area :content, placeholder: 'メッセージ内容', class: 'form-control', rows: 5 %>
         </div>
         <div class="col-sm-12 d-flex", style="justify-content: space-between;">
-          <%= f.label :image, class:"form-image-label" do %>
-            <i class="fas fa-image fa-3x"></i>
-            <%= f.file_field :image, style: 'display:none' %>
-          <% end %>
+          <%= f.file_field :image %>
           <%= button_tag( class: "btn btn-default btn-sm") do %>
             <i class="far fa-paper-plane fa-3x"></i>
           <% end %>

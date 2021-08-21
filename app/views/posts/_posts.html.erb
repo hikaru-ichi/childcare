@@ -19,7 +19,7 @@
           <p class="my-1"><%= post.category.name %></p>
           <p class="my-1"><strong><%= link_to post.title, post_url(post) %></strong></p>
           <% message_time = post.created_at + ( 9 * 60 * 60 ) %>
-          <%= "#{ message_time.month }月#{message_time.day}日#{message_time.hour}:#{message_time.sec}" %>
+          <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
         </div>
       </li>
     <% end %>
@@ -35,7 +35,8 @@
         <div class="m-2">
           <p class="my-1"><%= post.category.name %></p>
           <p class="my-1"><strong><%= link_to post.title, post_url(post) %></strong></p>
-          <%= "#{ post.created_at.month }月#{post.created_at.day}日" %>
+          <% message_time = post.created_at + ( 9 * 60 * 60 ) %>
+          <p class= "text-gray-dark"><%= message_time.strftime("%Y年%m月%d日%H:%M")%></p>
         </div>
       </li>
     <% end %>

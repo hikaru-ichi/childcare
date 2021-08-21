@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show]
   def show
     @user = User.find(params[:id])
-    @pagy, @children = pagy(@user.children, items: 3)
+    @pagy, @children = pagy(@user.children.order(child_birth: :asc), items: 3)
   
   end
 
