@@ -5,7 +5,9 @@
 
 <% @messages.each do |message| %>
   <div class="d-flex text-muted pt-3">
-    <img class="me-3 rounded-circle" src="<%=gravatar_url(message.sender, { size: 60 }) %>" alt="">
+    <div class="small d-flex align-items-center">
+      <img class="me-3 rounded-circle" src="<%=gravatar_url(message.sender, { size: 60 }) %>" alt="">
+    </div>
     <div class="pb-1 mb-0 small lh-sm border-bottom">
       <p class="d-block text-gray-dark"><%= link_to message.sender.name, message_new_path(chat_user_id: message.sender.id) %></p>
       <%= message.content%><br>

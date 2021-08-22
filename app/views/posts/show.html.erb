@@ -1,12 +1,12 @@
 <h2>お悩み</h2>
 <div class="row p-1 m-1 ">
-  <div class="col-sm-1 text-center mt-4">
+  <div class="col-sm-2 text-center mt-4">
     <p class="m-1 text-center">
       <img class="rounded-circle" src="<%= gravatar_url(@post.user, { size: 60 }) %>" alt=""><br>
       <strong class="mx-2"><%= @post.user.name %></strong>
     </p>
   </div>
-  <div class="col-sm-8 h-auto">
+  <div class="col-sm-9 h-auto">
     <strong style="font-size:18px;"><%= @post.title %></strong>
     <div class="d-flex-column border rounded p-2" style="background-color: #FFFAF0;">
       <%= simple_format(h(@post.content))%>

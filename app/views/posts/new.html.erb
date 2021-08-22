@@ -12,23 +12,24 @@
 <% if logged_in? %>
   <%= form_with(model: @post, url: posts_path) do |f| %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
-  
-    <div class="col-sm-10 my-3">
+  <div class="row justify-content-center">
+    <div class="col-sm-11 my-3">
       <%= f.text_field :title, placeholder: "タイトル", class: 'form-control' %>
     </div>
-    <div class="col-sm-10 my-3">
+    <div class="col-sm-11 my-3">
       <%= f.text_area :content, placeholder: "お悩み内容", class: 'form-control', rows: 5 %>
     </div>
-    <div class="col-sm-10 my-3">
+    <div class="col-sm-11 my-3">
       <%= f.select :category_id, @categories.map{ |category| [category.name, category.id]}, { include_blank: 'カテゴリー選択'}, { class: 'form-control' , required: true }%>
     </div>
-    <div class="col-sm-10 d-flex" style="justify-content: space-between;">
+    <div class="col-sm-11 d-flex" style="justify-content: space-between;">
       <%= f.file_field :image %>
       
       <%= button_tag( class: "btn btn-default btn-sm") do %>
         <i class="far fa-paper-plane fa-3x"></i>
       <% end %>
-    </div> 
+    </div>
+  </div>
   <% end %>
 <% else %>
   <%= link_to 'ログインし、お悩みを登録する', login_path %>

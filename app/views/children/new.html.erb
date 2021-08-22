@@ -6,10 +6,10 @@
     <%= form_with(model: @child, url: child_new_url) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
       <div class="row m-3 py-2 border rounded">
-        <div class="col-sm-6">
-          <label for="child_gender" class="form-label">お子様性別</label>
+        <div class="col-sm-6 my-1">
+          お子様性別
         </div>
-        <div class="col-sm-16", style="text-align: center">
+        <div class="col-sm-16" style="text-align: center">
           <%= f.radio_button :child_gender, :男性 %>
           <%= f.label :child_gender, "男性", {value: :男性, style: "display: inline-block;"} %>
           <%= f.radio_button :child_gender, :女性 %>
@@ -17,8 +17,8 @@
         </div>
       </div>
       <div class="row m-3 p-2 border rounded">
-        <div class="col-sm-8">
-          <label for="child_birth" class="form-label">お子様の生年月日または出産予定日</label>      
+        <div class="col-sm-8 my-1">
+          お子様の生年月日または出産予定日      
         </div>
         <div class="sm-16">
           <%= f.date_field :child_birth, class: 'form-control' %>

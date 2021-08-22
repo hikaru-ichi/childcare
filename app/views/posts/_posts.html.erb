@@ -15,7 +15,7 @@
             </p>
           <% end %>
         </div>
-        <div class="m-2">
+        <div class="m-3">
           <p class="my-1"><%= post.category.name %></p>
           <p class="my-1"><strong><%= link_to post.title, post_url(post) %></strong></p>
           <% message_time = post.created_at + ( 9 * 60 * 60 ) %>

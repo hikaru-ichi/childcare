@@ -1,7 +1,7 @@
 <% if logged_in? %>
   <% @responses.each do |response| %>
     <div class="row p-1 m-1">
-      <div class="col-sm-1 text-center mt-4">
+      <div class="col-sm-2 text-center mt-4">
         <img class="rounded-circle me-2 mt-1" src="<%= gravatar_url(response.user, { size: 60 }) %>" alt=""><br>
         <% if current_user == response.user %>
           <strong class="mx-2"><%= response.user.name %></strong>
@@ -9,7 +9,7 @@
           <%= link_to response.user.name, message_new_path(id: current_user.id, chat_user_id: response.user.id) %>
         <% end %>
       </div>
-      <div class="col-sm-8 mt-4 h-auto border rounded p-2" style="background-color: #F5FFFA;" >
+      <div class="col-sm-9 mt-4 h-auto border rounded p-2" style="background-color: #F5FFFA;" >
         <%= simple_format(response.content) %>
         <% if response.image? %>
           <%= image_tag response.image.url, :alt => 'image' %>
@@ -21,13 +21,13 @@
       </div>
       <% end %>
     </div>
-    <div class="offset-sm-1 px-1 py-0">
+    <div class="offset-sm-2 px-1 py-0">
       <% response_time = response.created_at + ( 9 * 60 * 60 ) %>
       <p class= "text-gray-dark"><%= response_time.strftime("%Y年%m月%d日%H:%M")%></p>
     </div>
   <% end %>
     <div class="row" style="align-items: flex-end;">
-    <aside class="offset-sm-1 col-sm-8" >
+    <aside class="offset-sm-2 col-sm-9" >
       <% if flash[:error].present? %>
         <div id="error_explanation" class="alert alert-warning">
           <ul class="mb-0">
@@ -55,21 +55,23 @@
   <% else %>
     <% @responses.each do |response| %>
       <div class="row p-1 m-1">
-        <div class="col-sm-1 text-center">
-          <%= response.user.name %>
-          <img class="rounded-circle me-2 mt-1" src="<%= gravatar_url(response.user, { size: 60 }) %>" alt="">
+        <div class="col-sm-1 text-center mt-4">
+          <img class="rounded-circle me-2 mt-1" src="<%= gravatar_url(response.user, { size: 60 }) %>" alt=""><br>
+            <strong class="mx-2"><%= response.user.name %></strong>
         </div>
-        <div class="col-sm-8 mt-4 h-auto border rounded p-2" style="background-color: #F5FFFA;" >
-            <%= simple_format(response.content) %>
-            <% if response.image? %>
-              <%= image_tag response.image.url, :alt => 'image' %>
-            <% end %>
-        </div>
-        <div class="offset-sm-1 px-1 py-0">
-          <% response_time = response.created_at + ( 9 * 60 * 60 ) %>
-          <p class= "text-gray-dark"><%= response_time.strftime("%Y年%m月%d日%H:%M")%></p>
+        <div class="col-sm-11 mt-4 h-auto border rounded p-2" style="background-color: #F5FFFA;" >
+          <%= simple_format(response.content) %>
+          <% if response.image? %>
+            <%= image_tag response.image.url, :alt => 'image' %>
+          <% end %>
         </div>
       </div>
+      <div class="offset-sm-1 px-1 py-0">
+        <% response_time = response.created_at + ( 9 * 60 * 60 ) %>
+        <p class= "text-gray-dark"><%= response_time.strftime("%Y年%m月%d日%H:%M")%></p>
+      </div>
     <% end %>
-    <%= link_to 'ログインし、回答を送信する', login_path %>
+    <div class="offset-sm-1">
+      <%= link_to 'ログインし、回答を送信する', login_path %>
+    </div>
   <% end %>

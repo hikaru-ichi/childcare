@@ -2,8 +2,8 @@
   <h2>ユーザー登録</h2>
 </div>
 
-<div class="row">
-  <div class="col-sm-6 offset-sm-3">
+<div class="row justify-content-center">
+  <div class="col-sm-6">
 
     <%= form_with(model: @user) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
@@ -18,7 +18,7 @@
           <div class="col-sm-4 m-1">
             性別
           </div>
-          <div class="col-sm-16" style="text-align: center">
+          <div style="text-align: center">
             <%= f.radio_button :gender, :男性 %>
             <%= f.label :gender, "男性", {value: :男性, style: "display: inline-block;"} %>
             <%= f.radio_button :gender, :女性 %>
@@ -29,7 +29,7 @@
         <div class="col-sm-4 m-1">
           生年月日
         </div>
-        <div class="sm-16">
+        <div>
           <%= f.date_field :birth, class: 'form-control' %>
         </div>
       </div>
