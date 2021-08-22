@@ -1,9 +1,9 @@
 <h2 class=pb-3>ユーザー情報</h2>
-<div style="text-align: center">
-  <img class="rounded-circle me-2 mt-1" src="<%= gravatar_url(@user, { size: 64 }) %>" alt="">
-</div>
 
 <div class="row justify-content-center">
+  <div class="col-sm-6 offset-sm-4 px-4">
+    <img class="rounded-circle me-2 mt-1" src="<%= gravatar_url(@user, { size: 64 }) %>" alt="">
+  </div>
   <div class="col-sm-6 offset-sm-3">
     <div class="form-group row">
       <div class="col-sm-6">
