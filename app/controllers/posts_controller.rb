@@ -1,10 +1,20 @@
 class PostsController < ApplicationController
   def index
-    if params[:keyword]
-      selection = params[:keyword]
-      @pagy, @posts = pagy(Post.sort(selection))
+    selection = params[:keyword] || "new"
+    search_keyword = params[:search_keyword]
+    if search_keyword.present?
+       @posts = Post.includes(:category).references(:category).search(search_keyword)
+
+      if selection == "new"
+        @pagy, @posts = pagy_array(@posts.sort{|a, b| b[:created_at] <=> a[:created_at]})
+      elsif selection == "old"
+        @pagy, @posts = pagy_array(@posts.sort{|a, b| a[:created_at] <=> b[:created_at]})
+      elsif selection == "category"
+        @pagy, @posts = pagy_array(@posts.sort{|a, b| a[:category_name] <=> b[:category_name]})
+      end
+      
     else
-      @pagy, @posts = pagy(Post.all.order(created_at: :desc))
+      @pagy, @posts = pagy(Post.sort(selection))
     end
   end
 
@@ -39,9 +49,9 @@ class PostsController < ApplicationController
   end
   
   def search
-    @pagy, @posts = pagy(Post.includes(:category).references(:category).search(params[:keyword]))
-    @keyword = params[:keyword]
-    render "index"
+    @pagy, @posts = pagy(Post.includes(:category).references(:category).search(params[:search_keyword]))
+    @search_keyword = params[:search_keyword]
+    redirect_to root_path(search_keyword: @search_keyword)
   end
   
   private

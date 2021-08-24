@@ -3,7 +3,7 @@
 <%= form_with url: posts_search_url, method: :get, local: true, id: "form4" do |f| %>
   <div class="row my-4">
     <div class="col-sm-4">
-      <%= f.text_field :keyword, placeholder: "タイトルまたはカテゴリーにて検索", value: @keyword, id: "sbox4", class: 'form-control' %>
+      <%= f.text_field :search_keyword, placeholder: "タイトルまたはカテゴリーにて検索", value: @keyword, id: "sbox4", class: 'form-control' %>
     </div>
     <div class="col-sm-2 ">
       <%= button_tag( class: "btn btn-default btn-sm", id: "sbtn4") do %>

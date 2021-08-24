@@ -9,6 +9,7 @@
 </div>
 <div class="mb-3">
   <%= form_with model: @post, url: posts_path, method: :get, local: true do |f| %>
+    <%= f.hidden_field :search_keyword, :value => params[:search_keyword] %>
     <%= f.select :keyword, {'投稿が新しい順': 'new', '投稿が古い順': 'old', 'カテゴリ順': 'category'}, {selected: params[:keyword]} %>
     <%= f.submit '並べ替え'%>
   <% end %>
@@ -18,3 +19,4 @@
     <%= render 'posts/posts', posts: @posts %>
   </div>
 </div>
+<%== pagy_bootstrap_nav(@pagy) %>

@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :responses, dependent: :destroy
   validates :user, presence: true
   validates :category, presence: true
-  validates :title, presence: true, length: { maximum: 255 }
+  validates :title, presence: true, length: { maximum: 15 }
   validates :content, presence: true, unless: :image?, length: { maximum: 500 }
   mount_uploader :image, ImageUploader
   
@@ -21,8 +21,8 @@ class Post < ApplicationRecord
   end
   
 
-  def self.search(keyword)
-    where(["title like? OR name like?", "%#{keyword}%", "%#{keyword}%"])
+  def self.search(search_keyword)
+    where(["title like? OR name like?", "%#{search_keyword}%", "%#{search_keyword}%"])
   end
 
 end
